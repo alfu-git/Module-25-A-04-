@@ -39,26 +39,26 @@
           <div class="grid grid-cols-3 gap-4">
             <div class="p-5 bg-[#ffffff] shadow rounded-lg">
               <span class="block text-[#323B49] text-sm font-medium">Total</span>
-              <span class="inline-block text-[#002C5C] text-2xl font-bold">8</span>
+              <span id="total-count" class="inline-block text-[#002C5C] text-2xl font-bold">0</span>
             </div>
 
             <div class="p-5 bg-[#ffffff] shadow rounded-lg">
               <span class="block text-[#323B49] text-sm font-medium">Interview</span>
-              <span class="inline-block text-[#10B981] text-2xl font-bold">0</span>
+              <span id="interview-count" class="inline-block text-[#10B981] text-2xl font-bold">0</span>
             </div>
 
             <div class="p-5 bg-[#ffffff] shadow rounded-lg">
               <span class="block text-[#323B49] text-sm font-medium">Rejected</span>
-              <span class="inline-block text-[#EF4444] text-2xl font-bold">0</span>
+              <span id="rejected-count" class="inline-block text-[#EF4444] text-2xl font-bold">0</span>
             </div>
           </div>
         </div>
       </section>
     </header>
 
-    <main class="">
+    <main>
       <!-- btn section -->
-      <section class="pt-[30px] container mx-auto px-5 sticky -top-6">
+      <section class="pt-[30px] container mx-auto px-5">
         <div>
           <div class="mb-6 flex justify-between">
             <h2 class="text-[#002C5C] text-xl font-semibold">Available Jobs</h2>
@@ -66,16 +66,18 @@
           </div>
 
           <div class="space-x-2">
-            <button class="btn  inline-block py-3 px-8 text-[#ffffff] text-[12px] bg-[#3B82F6] rounded-sm">All</button>
-            <button class="btn  inline-block py-3 px-3 text-[#64748B] text-[12px] bg-[#ffffff] rounded-sm">Interview</button>
-            <button class="btn inline-block py-3 px-3 text-[#64748B] text-[12px] bg-[#ffffff] rounded-sm">Rejected</button>
+            <button onclick="(toggleFunction('all-btn'))" id="all-btn" class="btn  inline-block py-3 px-8 text-[#ffffff] text-[12px] bg-[#3B82F6] rounded-sm">All</button>
+
+            <button onclick="(toggleFunction('interview-btn'))" id="interview-btn" class="btn inline-block py-3 px-3 text-[#64748B] text-[12px] bg-[#ffffff] rounded-sm">Interview</button>
+
+            <button onclick="(toggleFunction('rejected-btn'))" id="rejected-btn" class="btn inline-block py-3 px-3 text-[#64748B] text-[12px] bg-[#ffffff] rounded-sm">Rejected</button>
           </div>
         </div>
       </section>
 
       <!-- job section -->
-      <section class="pt-4 container mx-auto px-5">
-        <div class="space-y-4">
+      <section id="job-sec" class="pt-4 container mx-auto px-5">
+        <div id="all-cards" class="space-y-4">
           <div class="p-6 bg-[#ffffff] rounded-lg shadow-sm flex gap-4 justify-between">
             <div>
               <h3 class="mb-1 text-[#002C5C] text-lg font-semibold">Mobile First Corp</h3>
@@ -229,9 +231,10 @@
         </div>
       </section>
 
-      <!-- create empty dashboard for interview & rejected section -->
-      <section  class="pt-4 container mx-auto px-5 hidden">
+      <!-- interview section -->
+      <section class="pt-4 container mx-auto px-5 hidden">
         <div>
+          <!-- empty dashboard -->
           <div class="h-[400px] py-[110px] bg-[#ffffff] rounded-sm shadow-sm">
             <div class="px-5 max-w-[400px] mx-auto text-center flex flex-col items-center justify-center">
               <img class="max-w-fit" src="./images/jobs.png" alt="Document logo">
@@ -239,8 +242,34 @@
               <p class="text-[#64748B]">Check back soon for new job opportunities</p>
             </div>
           </div>
+
+          <div id="interview-cards">
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- rejected section -->
+      <section class="pt-4 container mx-auto px-5 hidden">
+        <div>
+          <!-- empty dashboard -->
+          <div class="h-[400px] py-[110px] bg-[#ffffff] rounded-sm shadow-sm">
+            <div class="px-5 max-w-[400px] mx-auto text-center flex flex-col items-center justify-center">
+              <img class="max-w-fit" src="./images/jobs.png" alt="Document logo">
+              <h3 class="mt-5 text-2xl text-[#002C5C] font-semibold">No jobs available</h3>
+              <p class="text-[#64748B]">Check back soon for new job opportunities</p>
+            </div>
+          </div>
+
+          <div id="rejected-cards">
+            
+          </div>
         </div>
       </section>
     </main>
+
+
+    <!-- function js -->
+    <script src="./js/function.js"></script>
   </body>
 </html>
