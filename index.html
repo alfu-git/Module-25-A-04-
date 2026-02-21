@@ -29,10 +29,11 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body>
+  <body class="bg-[#f8faf6] min-h-screen">
+    <!-- header section -->
     <header>
       <section class="container mx-auto px-5">
-        <div class="mt-[60px] pb-[30px] border-b border-[#E6E7E9]">
+        <div class="pt-[60px] pb-[30px] border-b border-[#E6E7E9]">
           <h1 class="text-[#002C5C] text-[32px] font-bold mb-5">Job Application Tracker</h1>
 
           <div class="grid grid-cols-3 gap-4">
@@ -54,5 +55,23 @@
         </div>
       </section>
     </header>
+
+    <main>
+      <!-- btn section -->
+      <section class="pt-[30px] container mx-auto px-5">
+        <div>
+          <div class="mb-6 flex justify-between">
+            <h2 class="text-[#002C5C] text-xl font-semibold">Available Jobs</h2>
+            <span class="text-[#64748B] font-medium"><span>8</span> jobs</span>
+          </div>
+
+          <div class="space-x-2">
+            <button class="btn  inline-block py-3 px-8 text-[#ffffff] text-[12px] bg-[#3B82F6] rounded-sm">All</button>
+            <button class="btn  inline-block py-3 px-3 text-[#64748B] text-[12px] bg-[#ffffff] rounded-sm">Interview</button>
+            <button class="btn inline-block py-3 px-3 text-[#64748B] text-[12px] bg-[#ffffff] rounded-sm">Rejected</button>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
