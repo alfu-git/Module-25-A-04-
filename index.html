@@ -29,7 +29,7 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body class="bg-[#f8faf6] min-h-screen">
+  <body class="bg-[#f8faf6] min-h-screen pb-[130px]">
     <!-- header section -->
     <header>
       <section class="container mx-auto px-5">
@@ -74,7 +74,7 @@
       </section>
 
       <!-- job section -->
-      <section  class="pt-4 container mx-auto px-5">
+      <section class="pt-4 container mx-auto px-5">
         <div class="space-y-4">
           <div class="p-6 bg-[#ffffff] rounded-lg shadow-sm flex gap-4 justify-between">
             <div>
@@ -224,6 +224,19 @@
               <button class="btn w-8 h-8 rounded-full p-5 bg-[#ffffff] border-[#F1F2F4] text-[#64748B] text-xl">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- create empty dashboard for interview & rejected section -->
+      <section  class="pt-4 container mx-auto px-5 hidden">
+        <div>
+          <div class="h-[400px] py-[110px] bg-[#ffffff] rounded-sm shadow-sm">
+            <div class="px-5 max-w-[400px] mx-auto text-center flex flex-col items-center justify-center">
+              <img class="max-w-fit" src="./images/jobs.png" alt="Document logo">
+              <h3 class="mt-5 text-2xl text-[#002C5C] font-semibold">No jobs available</h3>
+              <p class="text-[#64748B]">Check back soon for new job opportunities</p>
             </div>
           </div>
         </div>
