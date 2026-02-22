@@ -3,6 +3,11 @@ function getId (id) {
   return document.getElementById(id);
 }
 
+// GET CLASS //
+function getClass (className) {
+  return document.getElementsByClassName(className);
+} 
+
 
 // GET INNER TEXT //
 function getInnerText (id) {
@@ -19,34 +24,44 @@ function getNodeList (className) {
 }
 
 
-// SET TOTAL COUNT //
+// SET TOTAL & AVAILABLE-JOBS COUNT //
 const allJobs = getId('all-cards').children.length;
 
 let totalCount = getId('total-count');
 totalCount.innerText = allJobs;
 
+let availableJobs = document.querySelectorAll('.available-jobs');
+availableJobs.forEach(element => {
+  element.innerText = allJobs;
+});
+
 
 // SET INTERVIEW COUNT //
 const interviewCards = getId('interview-cards').children.length;
 
-let interviewCount = getId('interview-count');
-interviewCount.innerText = interviewCards;
+let interviewCount = getNodeList('.interview-count');
+interviewCount.forEach(element => {
+  element.innerText = interviewCards;
+})
 
 
 // SET REJECTED COUNT //
 const rejectedCards = getId('rejected-cards').children.length;
 
-let rejectedCount = getId('rejected-count');
-rejectedCount.innerText = rejectedCards;
+let rejectedCount = getNodeList('.rejected-count');
+rejectedCount.forEach(element => {
+  element.innerText = rejectedCards;
+})
+
+
+// GET ALL BTNS //
+const allBtn = getId('all-btn');
+const interviewBtn = getId('interview-btn');
+const rejectedBtn = getId('rejected-btn');
 
 
 // CREATE TOGGLE FUNCTION FOR BTNS //
 function toggleFunction (id) {
-  // get all btns
-  const allBtn = getId('all-btn');
-  const interviewBtn = getId('interview-btn');
-  const rejectedBtn = getId('rejected-btn');
-
   // remove blue bg from all btns
   allBtn.classList.remove('bg-[#3B82F6]', 'text-[#ffffff]');
   interviewBtn.classList.remove('bg-[#3B82F6]', 'text-[#ffffff]');
@@ -61,8 +76,70 @@ function toggleFunction (id) {
   const clickedBtn = getId(id);
 
   // remove white bg from clicked btn
-  clickedBtn.classList.remove('bg-[#ffffff]', 'text-[#64748B');
+  clickedBtn.classList.remove('bg-[#ffffff]', 'text-[#64748B]');
 
   // add blue bg on clicked btn
   clickedBtn.classList.add('bg-[#3B82F6]', 'text-[#ffffff]');
 }
+
+
+function showHide (id) {
+  // get all section
+  const jobSec = getId('job-sec');
+  const interviewSec = getId('interview-sec');
+  const rejectedSec = getId('rejected-sec');
+
+  // hidden all sec
+  jobSec.classList.add('hidden');
+  interviewSec.classList.add('hidden');
+  rejectedSec.classList.add('hidden');
+
+  // get selected section
+  const selectedSec = getId(id);
+  
+  // show selected section
+  selectedSec.classList.remove('hidden');
+}
+
+
+function showHideLittle (id) {
+  // get all little count 
+  const allLittleCount = getId('all-little-count-sec');
+  const interviewLittleCount = getId('interview-little-count-sec');
+  const rejectedLittleCount = getId('rejected-little-count-sec');
+
+  // hide all little count 
+  allLittleCount.classList.add('hidden');
+  interviewLittleCount.classList.add('hidden');
+  rejectedLittleCount.classList.add('hidden');
+
+  // get selected little count 
+  const selectedLittleCount = getId(id);
+
+  // show selected little count
+  selectedLittleCount.classList.remove('hidden');
+}
+
+// ALL BTN EVENT //
+allBtn.addEventListener('click', function() {
+  toggleFunction('all-btn');
+  showHideLittle('all-little-count-sec');
+  showHide('job-sec');
+})
+
+
+// INTERVIEW BTN EVENT //
+interviewBtn.addEventListener('click', function() {
+  toggleFunction('interview-btn');
+  showHideLittle('interview-little-count-sec');
+  showHide('interview-sec');
+})
+
+
+// REJECTED BTN EVENT //
+rejectedBtn.addEventListener('click', function() {
+  toggleFunction('rejected-btn');
+  showHideLittle('rejected-little-count-sec');
+  showHide('rejected-sec');
+})
+

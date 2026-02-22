@@ -1,3 +1,8 @@
 * {
   font-family: "Geist", sans-serif;
 }
+
+.interview-signal {
+  color: white;
+  background-color: green;
+}
