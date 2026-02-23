@@ -242,3 +242,141 @@ function renderRejected(job) {
   // update rejected count 
   setRejectedCount();
 }
+
+
+// ===============================
+// GET ALL MAIN CARDS
+// ===============================
+const cards = getNodeList('.cards');
+
+cards.forEach(card => {
+
+  card.addEventListener('click', function (event) {
+
+    const interviewClicked = event.target.classList.contains('interview-btn');
+    const rejectedClicked = event.target.classList.contains('rejected-btn');
+    const deleteClicked = event.target.closest('.delete-btn');
+
+    // card delete function
+    if(deleteClicked) {
+      const card = event.target.closest('.cards');
+      card.remove();
+      setTotalCount();
+    }
+
+    // guard condition
+    if (!interviewClicked && !rejectedClicked) return;
+    
+
+    // ===============================
+    // GET CARD DATA
+    // ===============================
+    const companyName = card.querySelector('.company-name').innerText;
+    const position = card.querySelector('.position').innerText;
+    const typeSalary = card.querySelector('.type-salary').innerText;
+    const description = card.querySelector('.description').innerText;
+    const interviewBtnText = card.querySelector('.interview-btn').innerText;
+    const rejectedBtnText = card.querySelector('.rejected-btn').innerText;
+    const cardSignal = card.querySelector('.signal');
+
+    let signalText = '';
+
+    // ===============================
+    // IF INTERVIEW CLICKED
+    // ===============================
+    if (interviewClicked) {
+
+      signalText = 'Interviewed';
+
+      cardSignal.classList.remove('rejected-signal');
+      cardSignal.classList.add('interview-signal');
+      cardSignal.innerText = signalText;
+
+      // Remove from rejected array
+      rejectedArr = rejectedArr.filter(item => item.companyName !== companyName);
+
+      // Remove from rejected DOM
+      removeCardFromSection('rejected-cards', companyName);
+
+      // Prevent duplicate
+      const alreadyExists = interviewArr.find(item => item.companyName === companyName);
+
+      if (!alreadyExists) {
+
+        const cardObj = {
+          companyName,
+          position,
+          typeSalary,
+          signal: signalText,
+          description,
+          interviewBtn: interviewBtnText,
+          rejectedBtn: rejectedBtnText
+        };
+
+        interviewArr.push(cardObj);
+        renderInterview(cardObj);
+      }
+    }
+
+    // ===============================
+    // IF REJECT CLICKED
+    // ===============================
+    if (rejectedClicked) {
+
+      signalText = 'Rejected';
+
+      cardSignal.classList.remove('interview-signal');
+      cardSignal.classList.add('rejected-signal');
+      cardSignal.innerText = signalText;
+
+      // Remove from interview array
+      interviewArr = interviewArr.filter(item => item.companyName !== companyName);
+
+      // Remove from interview DOM
+      removeCardFromSection('interview-cards', companyName);
+
+      const alreadyExists = rejectedArr.find(item => item.companyName === companyName);
+
+      if (!alreadyExists) {
+
+        const cardObj = {
+          companyName,
+          position,
+          typeSalary,
+          signal: signalText,
+          description,
+          interviewBtn: interviewBtnText,
+          rejectedBtn: rejectedBtnText
+        };
+
+        rejectedArr.push(cardObj);
+        renderRejected(cardObj);
+      }
+    }
+
+    // ===============================
+    // UPDATE COUNTS
+    // ===============================
+    setInterviewCount();
+    setRejectedCount();
+
+  });
+
+});
+
+
+// ===============================
+// REMOVE CARD FROM SECTION
+// ===============================
+function removeCardFromSection(sectionId, companyName) {
+
+  const section = getId(sectionId);
+  const children = [...section.children];
+
+  children.forEach(child => {
+    const title = child.querySelector('h3');
+    if (title && title.innerText === companyName) {
+      child.remove();
+    }
+  });
+}
