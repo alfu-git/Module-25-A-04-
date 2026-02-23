@@ -6,3 +6,8 @@
   color: white;
   background-color: green;
 }
+
+.rejected-signal {
+  color: white;
+  background-color: red;
+}
