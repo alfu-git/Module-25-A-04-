@@ -172,3 +172,73 @@ rejectedBtn.addEventListener("click", function () {
   showHideLittle("rejected-little-count-sec");
   showHide("rejected-sec");
 });
+
+
+// RENDER INTERVIEW //
+function renderInterview(job) {
+  // get card parent
+  const cardsParent = getId('interview-cards');
+
+  // create card & card inner html
+  const cardDiv = document.createElement('div');
+  cardDiv.className = 'cards p-6 bg-[#ffffff] border-l-3 border-[#10B981] rounded-lg shadow-[0_0_40px_rgba(34,197,94,0.6)] flex gap-4 justify-between';
+  cardDiv.innerHTML = ` 
+    <div>
+      <h3 class="mb-1 text-[#002C5C] text-lg font-semibold">${job.companyName}</h3>
+      <h4 class="mb-5 text-[#64748B]">${job.position}</h4>
+      <p class="mb-5 text-sm text-[#64748B]">${job.typeSalary}</p>
+
+      <span class="mb-2 inline-block bg-[green] rounded-sm py-2 px-3 text-[white] text-sm font-medium">${job.signal}</span>
+
+      <p class="mb-5 text-[#323B49] text-sm">${job.description}</p>
+
+      <button class="interview-btn btn inline-block text-[#10B981] bg-[#ffffff] border-[#10B981]">${job.interviewBtn}</button>
+      <button class="rejected-btn btn inline-block text-[#EF4444] bg-[#ffffff] border-[#EF4444]">${job.rejectedBtn}</button>
+    </div>
+
+    <div>
+      <button class="delete-btn btn w-8 h-8 rounded-full p-5 bg-[#ffffff] border-[#F1F2F4] text-[#64748B] text-xl">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+    </div>
+  `
+  // add cardDiv to cardsParent 
+  cardsParent.appendChild(cardDiv);
+
+  // update interview count 
+  setInterviewCount();
+}
+
+
+// RENDER REJECTED //
+function renderRejected(job) {
+  // get card parent
+  const cardsParent = getId('rejected-cards');
+
+  // create card & card inner html
+  const cardDiv = document.createElement('div');
+  cardDiv.className = 'cards p-6 bg-[#ffffff] border-l-3 border-[#EF4444] rounded-lg shadow-[0_0_40px_rgba(239,68,68,0.6)] flex gap-4 justify-between';
+  cardDiv.innerHTML = `
+    <div>
+      <h3 class="mb-1 text-[#002C5C] text-lg font-semibold">${job.companyName}</h3>
+      <h4 class="mb-5 text-[#64748B]">${job.position}</h4>
+      <p class="mb-5 text-sm text-[#64748B]">${job.typeSalary}</p>
+      <span class="mb-2 inline-block bg-[red] rounded-sm py-2 px-3 text-[white] text-sm font-medium">${job.signal}</span>
+      <p class="mb-5 text-[#323B49] text-sm">${job.description}</p>
+      <button class="interview-btn btn inline-block text-[#10B981] bg-[#ffffff] border-[#10B981]">${job.interviewBtn}</button>
+      <button class="rejected-btn btn inline-block text-[#EF4444] bg-[#ffffff] border-[#EF4444]">${job.rejectedBtn}</button>
+    </div>
+
+    <div>
+      <button class="delete-btn btn w-8 h-8 rounded-full p-5 bg-[#ffffff] border-[#F1F2F4] text-[#64748B] text-xl">
+        <i class="fa-regular fa-trash-can"></i>
+      </button>
+    </div>
+  `
+
+  // add cardDiv to cardsParent 
+  cardsParent.appendChild(cardDiv);
+
+  // update rejected count 
+  setRejectedCount();
+}
