@@ -88,8 +88,6 @@ setRejectedCount();
 const allBtn = getId("all-btn");
 const interviewBtn = getId("interview-btn");
 const rejectedBtn = getId("rejected-btn");
-const deleteBtn = getId('delete-btn');
-
 
 // CREATE TOGGLE FUNCTION FOR BTNS //
 function toggleFunction(id) {
@@ -181,16 +179,16 @@ function renderInterview(job) {
 
   // create card & card inner html
   const cardDiv = document.createElement('div');
-  cardDiv.className = 'cards p-6 bg-[#ffffff] border-l-3 border-[#10B981] rounded-lg shadow-[0_0_40px_rgba(34,197,94,0.6)] flex gap-4 justify-between';
+  cardDiv.className = 'cards mt-4 p-6 bg-[#ffffff] border-l-3 border-[#10B981] rounded-lg shadow-[0_0_40px_rgba(34,197,94,0.6)] flex gap-4 justify-between';
   cardDiv.innerHTML = ` 
     <div>
-      <h3 class="mb-1 text-[#002C5C] text-lg font-semibold">${job.companyName}</h3>
-      <h4 class="mb-5 text-[#64748B]">${job.position}</h4>
-      <p class="mb-5 text-sm text-[#64748B]">${job.typeSalary}</p>
+      <h3 class="company-name mb-1 text-[#002C5C] text-lg font-semibold">${job.companyName}</h3>
+      <h4 class="position mb-5 text-[#64748B]">${job.position}</h4>
+      <p class="type-salary mb-5 text-sm text-[#64748B]">${job.typeSalary}</p>
 
-      <span class="mb-2 inline-block bg-[green] rounded-sm py-2 px-3 text-[white] text-sm font-medium">${job.signal}</span>
+      <span class="signal mb-2 inline-block bg-[green] rounded-sm py-2 px-3 text-[white] text-sm font-medium">${job.signal}</span>
 
-      <p class="mb-5 text-[#323B49] text-sm">${job.description}</p>
+      <p class="description mb-5 text-[#323B49] text-sm">${job.description}</p>
 
       <button class="interview-btn btn inline-block text-[#10B981] bg-[#ffffff] border-[#10B981]">${job.interviewBtn}</button>
       <button class="rejected-btn btn inline-block text-[#EF4444] bg-[#ffffff] border-[#EF4444]">${job.rejectedBtn}</button>
@@ -217,14 +215,14 @@ function renderRejected(job) {
 
   // create card & card inner html
   const cardDiv = document.createElement('div');
-  cardDiv.className = 'cards p-6 bg-[#ffffff] border-l-3 border-[#EF4444] rounded-lg shadow-[0_0_40px_rgba(239,68,68,0.6)] flex gap-4 justify-between';
+  cardDiv.className = 'cards mt-4 p-6 bg-[#ffffff] border-l-3 border-[#EF4444] rounded-lg shadow-[0_0_40px_rgba(239,68,68,0.6)] flex gap-4 justify-between';
   cardDiv.innerHTML = `
     <div>
-      <h3 class="mb-1 text-[#002C5C] text-lg font-semibold">${job.companyName}</h3>
-      <h4 class="mb-5 text-[#64748B]">${job.position}</h4>
-      <p class="mb-5 text-sm text-[#64748B]">${job.typeSalary}</p>
-      <span class="mb-2 inline-block bg-[red] rounded-sm py-2 px-3 text-[white] text-sm font-medium">${job.signal}</span>
-      <p class="mb-5 text-[#323B49] text-sm">${job.description}</p>
+      <h3 class="company-name mb-1 text-[#002C5C] text-lg font-semibold">${job.companyName}</h3>
+      <h4 class="position mb-5 text-[#64748B]">${job.position}</h4>
+      <p class="type-salary mb-5 text-sm text-[#64748B]">${job.typeSalary}</p>
+      <span class="signal mb-2 inline-block bg-[red] rounded-sm py-2 px-3 text-[white] text-sm font-medium">${job.signal}</span>
+      <p class="description mb-5 text-[#323B49] text-sm">${job.description}</p>
       <button class="interview-btn btn inline-block text-[#10B981] bg-[#ffffff] border-[#10B981]">${job.interviewBtn}</button>
       <button class="rejected-btn btn inline-block text-[#EF4444] bg-[#ffffff] border-[#EF4444]">${job.rejectedBtn}</button>
     </div>
@@ -247,11 +245,10 @@ function renderRejected(job) {
 // ===============================
 // GET ALL MAIN CARDS
 // ===============================
-const cards = getNodeList('.cards');
+document.addEventListener('click', function (event) {
 
-cards.forEach(card => {
-
-  card.addEventListener('click', function (event) {
+  const card = event.target.closest('.cards');
+  if (!card) return;
 
     const interviewClicked = event.target.classList.contains('interview-btn');
     const rejectedClicked = event.target.classList.contains('rejected-btn');
@@ -262,6 +259,8 @@ cards.forEach(card => {
       const card = event.target.closest('.cards');
       card.remove();
       setTotalCount();
+      setInterviewCount();
+      setRejectedCount();
     }
 
     // guard condition
@@ -284,6 +283,8 @@ cards.forEach(card => {
     // ===============================
     // IF INTERVIEW CLICKED
     // ===============================
+    // console.log(interviewClicked);
+
     if (interviewClicked) {
 
       signalText = 'Interviewed';
@@ -361,8 +362,6 @@ cards.forEach(card => {
     setRejectedCount();
 
   });
-
-});
 
 
 // ===============================
