@@ -6,13 +6,13 @@
 
   Here are some basic difference between those selectors,,,,
 
-  **1. getElementById :**
+  **1. getElementById :**  
     For use this selector we need to element id and by this selector we can get only one unique element.
 
-  **2. getElementsByClassName :** 
+  **2. getElementsByClassName :**   
     For use this selector we need to elements class and by this selector we can get multiple elements. It returns html collection. 
 
-   **3. querySelector / querySelectorAll :** 
+   **3. querySelector / querySelectorAll :**   
     We can use these selectors by id, class and element name. But here some difference between those selectors. querySelector returns the first matching node in all matching node list. querySelectorAll returns all the matching node list.
     And one more thing these two selectors returns node list not html collection.
 
@@ -22,7 +22,7 @@
 
   Sometimes we need to create new element into the DOM. 
 
-  To create new element at first we have to use -> document.createElement('element name');
+  To create new element at first we have to use -> document.createElement('element name');  
   we can create it by declare in a variable too -> const newEl = document.createElement('element name');
 
   Even if we want that in this new element we can add id, class, attribute and set the inner text too. 
