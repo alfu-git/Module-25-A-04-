@@ -287,7 +287,7 @@ document.addEventListener('click', function (event) {
 
     if (interviewClicked) {
 
-      signalText = 'Interviewed';
+      signalText = 'Interview';
 
       cardSignal.classList.remove('rejected-signal');
       cardSignal.classList.add('interview-signal');
